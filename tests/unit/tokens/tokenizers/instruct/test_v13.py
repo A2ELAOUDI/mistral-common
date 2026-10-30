@@ -34,6 +34,7 @@ from tests.unit.tokens.tokenizers.instruct.request_builders import (
     build_call_with_id_before_last_user_request,
     build_closed_think_request,
     build_closed_think_then_text_request,
+    build_closed_think_then_text_trailing_spaces_request,
     build_empty_assistant_request,
     build_empty_content_empty_calls_request,
     build_empty_content_no_calls_request,
@@ -555,6 +556,13 @@ def image_tokenizer() -> InstructTokenizerV13:
             _CLOSED_THINK_THEN_TEXT_EXPECTED,
             _CLOSED_THINK_THEN_TEXT_TEXT,
             id="with-think-closed-think-then-text",
+        ),
+        pytest.param(
+            "with_think",
+            partial(build_closed_think_then_text_trailing_spaces_request, settings=None),
+            _CLOSED_THINK_THEN_TEXT_EXPECTED,
+            _CLOSED_THINK_THEN_TEXT_TEXT,
+            id="with-think-closed-think-then-text-trailing-spaces",
         ),
         pytest.param(
             "with_think",

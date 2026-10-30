@@ -1026,6 +1026,16 @@ def build_closed_think_then_text_request(*, settings: ModelSettings | None) -> I
     )
 
 
+def build_closed_think_then_text_trailing_spaces_request(
+    *, settings: ModelSettings | None
+) -> InstructRequest[ChatMessage, Tool]:
+    r"""Build a closed think chunk followed by assistant text ending with spaces."""
+    return build_user_then_assistant_request(
+        assistant=AssistantMessage(content=[ThinkChunk(thinking="T1"), TextChunk(text="A1  ")]),
+        settings=settings,
+    )
+
+
 def build_open_think_text_and_call_request(*, settings: ModelSettings | None) -> InstructRequest[ChatMessage, Tool]:
     r"""Build assistant content with an open think chunk, text and a tool call."""
     return build_user_then_assistant_request(
